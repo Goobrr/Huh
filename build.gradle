@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+sourceSets.main.resources.srcDirs = ['assets/']
+sourceSets.main.java.srcDirs = ['src/']
+
+repositories {
+    mavenCentral()
+    maven{ url 'https://www.jitpack.io' }
+}
+
+dependencies {
+    implementation "com.github.Anuken.Arc:arc-core:v135"
+    implementation "com.github.Anuken.Arc:backend-sdl:v135"
+    implementation "com.github.Anuken.Arc:natives-desktop:v135"
+}
+
+jar {
+    archiveFileName = "${project.archivesBaseName}.jar"
+
+    from{
+        configurations.runtimeClasspath.collect{ it.isDirectory() ? it : zipTree(it) }
+    }
+
+    manifest{
+        attributes 'Main-Class': 'huh.Huh'
+    }
+}
