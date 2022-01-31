@@ -1,7 +1,9 @@
 package huh;
 
 import arc.*;
+import arc.assets.*;
 import arc.graphics.*;
+import arc.graphics.g2d.*;
 import arc.util.*;
 import huh.core.*;
 
@@ -12,18 +14,24 @@ public class Huh extends ApplicationCore{
         Log.info("Max texture size: @", Gl.getInt(Gl.maxTextureSize));
         Log.info("Using @ Context", Core.gl30 != null ? "OpenGL 3" : "OpenGL 2");
 
+        Core.assets = new AssetManager();
+        Core.camera = new Camera();
+        Core.batch = new SortedSpriteBatch();
+        Core.atlas = TextureAtlas.blankAtlas();
 
         add(new Renderer());
-        add(new UI());
     }
 
     @Override
     public void update(){
+        super.update();
         Core.graphics.setTitle("Huh? - " + Core.graphics.getFramesPerSecond() + "FPS");
+        Time.update();
     }
 
     @Override
     public void exit(){
         Log.info("Goodbye");
+        super.exit();
     }
 }
