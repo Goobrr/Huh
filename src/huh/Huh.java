@@ -4,6 +4,8 @@ import arc.*;
 import arc.assets.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.scene.*;
 import arc.util.*;
 import huh.core.*;
 
@@ -19,14 +21,18 @@ public class Huh extends ApplicationCore{
         Core.batch = new SortedSpriteBatch();
         Core.atlas = TextureAtlas.blankAtlas();
 
+        Core.scene = new Scene();
+
         add(new Renderer());
     }
 
     @Override
     public void update(){
-        super.update();
-        Core.graphics.setTitle("Huh? - " + Core.graphics.getFramesPerSecond() + "FPS");
         Time.update();
+        super.update();
+        Core.graphics.setTitle("Huh? - " + Core.graphics.getFramesPerSecond() + "FPS - " + Mathf.floor(Time.time));
+
+        //Draw.flush();
     }
 
     @Override

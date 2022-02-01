@@ -9,6 +9,8 @@ public class Launcher {
 
             width = 720;
             height = 576;
+
+            vSyncEnabled = true;
         }});
     }
 
